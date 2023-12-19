@@ -1,0 +1,32 @@
+<div class="container">
+  <div mat-dialog-title>
+    <h1 class="text-center">Projet</h1>
+  </div>
+  <form [formGroup]="projectForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="d-flex flex-row mr-3">
+
+      <div class="column">
+    <mat-form-field appearance="outline" class="fixed-width">
+      <mat-label for="projectName">Project Name</mat-label>
+      <input matInput type="text" formControlName="projectName" id="projectName" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="fixed-width">
+      <mat-label for="startDate">Start Date</mat-label>
+      <input matInput type="date" formControlName="startDate" id="startDate" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="fixed-width">
+      <mat-label for="endDate">End Date</mat-label>
+      <input matInput type="date" formControlName="endDate" id="endDate" />
+    </mat-form-field>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-lg btn-danger" type="button" [mat-dialog-close]="false"> Cancel </button> &nbsp;
+    <button class="btn btn-lg btn-success" color="primary" type="submit" [disabled]="spocRegistrationForm.invalid"> {{
+      data ? "Update" : "Save" }}</button>
+  </div>
+
+</form>
+</div>

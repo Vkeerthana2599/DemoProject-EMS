@@ -1,0 +1,101 @@
+<div class="container">
+    <div mat-dialog-title>
+        <h2 class="text-center">Employee</h2>
+    </div>
+    <form [formGroup]="employeeForm" class="form p-4" (ngSubmit)="onFormSubmit()">
+        <div mat-dialog-content class="d-flex flex-row">
+            <div class="column">
+                 <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label>Employee Name</mat-label>
+                    <input matInput type="text" title="Employee Name" formControlName="name">
+                    <mat-error *ngIf="employeeForm.get('name')?.hasError('required')">
+                        Name is required.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="qualification" class="form-label">Qualifications</mat-label>
+                    <input matInput type="text" formControlName="qualification">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="experience">Experience</mat-label>
+                    <input matInput type="text" formControlName="experience" id="experience" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="phone">Phone number</mat-label>
+                    <input matInput type="tel" minlength="10" maxlength="15" formControlName="phoneNo" id="phoneNo" />
+                    <mat-error *ngIf="employeeForm.get('phoneNo')?.hasError('required')">
+                        Phone number is required.
+                    </mat-error>
+                    <mat-error *ngIf="employeeForm.get('phoneNo')?.hasError('invalidPhoneNumber')">
+                        Phone number must have exactly 10 digits and start from 6-9.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="Female">Female</mat-option>
+                        <mat-option value="Bangalore">Male</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="designation">Designation</mat-label>
+                    <input matInput type="tel" minlength="10" maxlength="15" formControlName="designation"
+                        id="designation" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="location">Address</mat-label>
+                    <input matInput type="text" name="location" id="location" formControlName="address">
+                </mat-form-field>
+            </div>
+            <div class="column">
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" title="Email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="phone">Phone number</mat-label>
+                    <input matInput type="tel" minlength="10" maxlength="15" formControlName="phoneNo" id="phoneNo" />
+                    <mat-error *ngIf="employeeForm.get('phoneNo')?.hasError('required')">
+                        Phone number is required.
+                    </mat-error>
+                    <mat-error *ngIf="employeeForm.get('phoneNo')?.hasError('invalidPhoneNumber')">
+                        Phone number must have exactly 10 digits and start from 6-9.
+                    </mat-error>
+                </mat-form-field>
+                <h1>Add Project</h1>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="projectName">Project Name</mat-label>
+                    <input matInput type="text" formControlName="projectName" id="projectName" />
+                </mat-form-field>
+                 <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="startDate">Start Date</mat-label>
+                    <input matInput type="date" formControlName="startDate" id="startDate" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="fixed-width">
+                    <mat-label for="endDate">End Date</mat-label>
+                    <input matInput type="date" formControlName="endDate" id="endDate" />
+                </mat-form-field>
+                <button class="btn btn-primary" (click)="addProject()">Add</button>
+                <table class="table">
+                    <thead>
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{project?.name}}</td>
+                            <td>{{project?.startDate | date:'d-M-y hh:mm a'}}</td>
+                            <td>{{project?.endDate | date:'d-M-y hh:mm a'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center mb-3">
+                    <button class="btn btn-lg btn-danger" type="button" [mat-dialog-close]="false">Cancel</button>
+                    &nbsp;
+                    <button class="btn btn-lg btn-success" color="primary" type="submit"
+                        [disabled]="employeeForm.invalid">{{employee ? 'Update':
+                        'Save'}}</button>
+                </div>

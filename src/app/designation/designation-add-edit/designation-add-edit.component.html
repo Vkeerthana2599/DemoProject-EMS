@@ -1,0 +1,23 @@
+<div class="container">
+  <div mat-dialog-title>
+    <h1> Designation Form</h1>
+  </div>
+  <form [formGroup]="designationForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="d-flex flex-column">
+        <mat-form-field appearance="outline" class="fixed-width">
+          <mat-label>Designation</mat-label>
+          <input matInput type="text" title="Name" formControlName="name" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="text-center mb-3">
+      <button class="btn btn-lg btn-danger mb-3" type="button" [mat-dialog-close]="false">
+        Cancel
+      </button> &nbsp;
+      <button class="btn btn-lg btn-success mb-3" color="primary" type="submit" [disabled]="designationForm.invalid">
+        {{ data ? "Update" : "Save" }}
+      </button>
+    </div>
+  </form>
+</div>
